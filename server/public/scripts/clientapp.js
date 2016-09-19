@@ -45,7 +45,7 @@ $(document).ready(function () {
     });
   }
 
-  // GET /treats?q=thing
+  // GET /treats?q=thing -- HARD MODE
   function searchTreats(query) {
     $.ajax({
       method: 'GET',

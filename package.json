@@ -4,8 +4,23 @@
   "description": "Code Challenge 5",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon server/app.js"
   },
   "author": "antoinette@primeacademy.io",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnark88/code_challenge-4.git"
+  },
+  "bugs": {
+    "url": "https://github.com/johnark88/code_challenge-4/issues"
+  },
+  "homepage": "https://github.com/johnark88/code_challenge-4#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "nodemon": "^1.10.2",
+    "pg": "^6.1.0"
+  }
 }
