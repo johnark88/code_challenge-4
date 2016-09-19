@@ -28,6 +28,7 @@ pg.connect(conectionString, function(err,client,done){
 if (err) {
   console.log(err);
 }else {
+  console.log('connected to the sweet treats DB!');
   var results = [];
   var queryResults = client.query('SELECT * from treat');
   queryResults.on('row',function(row){
@@ -44,8 +45,18 @@ if (err) {
 
 app.post('/treats',urlencodedParser, function(req,res){
   console.log('in app.post treats route ', req.body);
-  
-});
+  pg.connect(conectionString, function(err,client,done){
+    if (err) {
+      console.log(err);
+    }else {
+      console.log('connected to the sweet treats DB!');
+      client.query('INSERT INTO treat (name,description,pic) VALUES ($1, $2, $3)',[req.body.name,req.body.description,req.body.url]);
+     res.send({success: true});
+    }//end else statment
+  });//end pg connect
+});//end app.post new treats
+
+
 
 
 
