@@ -42,7 +42,7 @@ if (err) {
 });//end  pg connect
 });// end app.get treats
 
-
+//input new treats to database
 app.post('/treats',urlencodedParser, function(req,res){
   console.log('in app.post treats route ', req.body);
   pg.connect(conectionString, function(err,client,done){
@@ -57,13 +57,27 @@ app.post('/treats',urlencodedParser, function(req,res){
 });//end app.post new treats
 
 
-
-
-
-
-
-
-
+//search database with user input q=?
+//I can't seem to get my client connected to this route.....
+app.get('/treats?q=',function(req , res){
+console.log('in app.get query route',req.query.q);
+pg.connect(conectionString, function(err,client,done){
+if (err) {
+  console.log(err);
+}else {
+  console.log('connected to the sweet treats DB!for query');
+  var results = [];
+  var queryResults = client.query('SELECT * FROM treat WHERE (1$)',[req.query.q]);
+  queryResults.on('row',function(row){
+    results.push(row);
+  });//end queryResults on row
+  queryResults.on('end', function(){
+    done();
+    res.send(results);
+  });//end queryResults on end
+}//end else no err
+});//end  pg connect
+});//end app.get query function
 
 
 app.use( express.static( 'server/public' ) );
